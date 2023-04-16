@@ -4,7 +4,7 @@
 }
 .container {
     width: 375px;
-    height: 800px;
+    height: 900px;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -36,6 +36,38 @@
     box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
     
 }
+.bate-papo {
+    margin-top: 106px;
+    background-color: #E5E5E5;
+    margin-bottom: 80px;
+    padding-bottom: 100px;
+
+}
+.hour{
+    color: #AAAAAA;
+}
+
+.bold{
+    font-weight: bold;
+    margin-right: 3px;
+}
+.bate-papo div {
+    height: 40px;
+    width: 100%;
+    margin-bottom: 4px;
+    border-radius: 2px;
+    font-family: 'Roboto', sans-serif;
+
+    font-size: 14px;
+    font-weight: 700;
+    font-size: 14px;
+    font-weight: 400;
+
+
+    text-align: left;
+
+}
+
 
 img {
     width: 75px;
