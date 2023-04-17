@@ -46,6 +46,7 @@ function srcMessage (){
     promiseMessage.then(renderMessage);
 }
 
+setInterval(srcMessage, 3000);
 function renderMessage(messages){
     let screen = document.querySelector(".bate-papo");
     screen.innerHTML = "";
@@ -81,7 +82,7 @@ function renderMessage(messages){
     elements.scrollIntoView();
 }
 
-setInterval(srcMessage, 3000);
+
 
 function sendMessage(){
     let enviar = document.querySelector(".chat").value;
@@ -97,5 +98,6 @@ function sendMessage(){
     promiseNewMessage.then();
     promiseNewMessage.catch();
     document.querySelector(".chat").value = "";
+    srcMessage ();
 }
 
