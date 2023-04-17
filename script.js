@@ -17,8 +17,9 @@ novoUsuario = {
 entrouNaSala();
 
 function recebeu(resposta){   
-    srcMessage();
+    
     console.log(resposta);
+  
 }
 
 function deuErro(erro){
@@ -35,7 +36,7 @@ function conexaoServer(){
 
 function offline(){
     console.log('Usuario saiu da sala');
-  
+    window.location.reload()
 }
 
 setInterval(conexaoServer, 5000);
@@ -44,7 +45,6 @@ function srcMessage (){
     let promiseMessage = axios.get('https://mock-api.driven.com.br/api/vm/uol/messages');
     promiseMessage.then(renderMessage);
 }
-
 
 function renderMessage(messages){
     let screen = document.querySelector(".bate-papo");
@@ -95,10 +95,7 @@ function sendMessage(){
 
     let promiseNewMessage = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', objeto);
     promiseNewMessage.then();
-    promiseNewMessage.catch(erroMsg);
+    promiseNewMessage.catch();
     document.querySelector(".chat").value = "";
 }
 
-function erroMsg(message){
-    window.location.reload();
-}
