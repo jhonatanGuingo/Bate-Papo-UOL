@@ -24,6 +24,7 @@ function recebeu(resposta){
 function deuErro(erro){
     console.log(`Já tem um usuario com esse nome!`);
     console.log(erro);
+    window.location.reload()
     entrouNaSala();
 }
 
@@ -35,6 +36,7 @@ function conexaoServer(){
 
 function offline(){
     console.log('Usuario saiu da sala');
+    window.location.reload()
 }
 
 setInterval(conexaoServer, 5000);
@@ -43,6 +45,7 @@ function srcMessage (){
     let promiseMessage = axios.get('https://mock-api.driven.com.br/api/vm/uol/messages');
     promiseMessage.then(renderMessage);
 }
+srcMessage();
 
 function renderMessage(messages){
     let screen = document.querySelector(".bate-papo");
