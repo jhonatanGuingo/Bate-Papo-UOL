@@ -17,7 +17,7 @@ novoUsuario = {
 entrouNaSala();
 
 function recebeu(resposta){   
-    
+    srcMessage();
     console.log(resposta);
 }
 
@@ -44,7 +44,7 @@ function srcMessage (){
     let promiseMessage = axios.get('https://mock-api.driven.com.br/api/vm/uol/messages');
     promiseMessage.then(renderMessage);
 }
-srcMessage();
+
 
 function renderMessage(messages){
     let screen = document.querySelector(".bate-papo");
