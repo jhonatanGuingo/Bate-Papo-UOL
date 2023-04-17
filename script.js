@@ -1,9 +1,11 @@
 let novoUsuario;
+let objeto;
+let nomeDigitado;
 
 axios.defaults.headers.common['Authorization'] = 'IuHZ6BMFfr0J3l7LdoeG2XVV';
 
 function entrouNaSala() {
-let nomeDigitado = prompt("Qual o seu nome?");
+nomeDigitado = prompt("Qual o seu nome?");
 novoUsuario = {
     name: nomeDigitado
  };
@@ -47,38 +49,51 @@ function renderMessage(messages){
     screen.innerHTML = "";
 
     for (let i = 0; i < messages.data.length; i++){
-        screen.innerHTML += `<div class="${messages.data[i].type}">
+        if (messages.data[i].type === 'status'){
+        screen.innerHTML += `<div class="${messages.data[i].type}" data-test="message">
         <a><a class = "hour">(${messages.data[i].time}) </a> 
         <span class = "bold"> ${messages.data[i].from} </span>
         ${messages.data[i].text}</a>
         </div>`;
+        }else if (messages.data[i].type === 'message'){
+            screen.innerHTML +=   `<div class="${messages.data[i].type}" data-test="message">
+            <span class="hour">(${messages.data[i].time})</span> 
+            <span class="bold">${messages.data[i].from}</span>
+            <span class="text">para&nbsp;</span>
+            <span class="bold">${messages.data[i].to}:</span>
+            <span class="text">${messages.data[i].text}</span>
+        </div>`;
+        }else {
+            screen.innerHTML +=  `<div class="${messages.data[i].type}" data-test="message">
+            <span class="hour">(${messages.data[i].time})</span> 
+            <span class="bold">${messages.data[i].from}</span>
+            <span class="text">reservadamente&nbsp;</span>
+            <span class="bold">${messages.data[i].to}:</span>
+            <span class="text">${messages.data[i].text}</span>
+        </div>`;
+
+        }
     }
 
-    const elements = document.querySelector(`.bate-papo`).lastChild;
+    const elements = document.querySelector(".bate-papo").lastChild;
     elements.scrollIntoView();
 }
 
 setInterval(srcMessage, 3000);
 
-function sendMessage(message){
-    let sendMessage = document.querySelector("input").value;
+function sendMessage(){
+    let enviar = document.querySelector(".chat").value;
 
-    let obj = {
-        from: novoUsuario,
-        to: "todos",
-        text: sendMessage,
+    objeto = {
+        from: nomeDigitado,
+        to: "Todos",
+        text: enviar,
         type: "message"
     }
 
-    let promiseNewMessage = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', obj);
-    promiseNewMessage.then(msgSended);
+    let promiseNewMessage = axios.post('https://mock-api.driven.com.br/api/vm/uol/messages', objeto);
+    promiseNewMessage.then();
     promiseNewMessage.catch();
-    document.querySelector("input").value = "";
+    document.querySelector(".chat").value = "";
 }
 
-function msgSended(){
-    let screen = document.querySelector(".bate-papo");
-    screen.innerHTML += `<div class="${obj.data.type}">
-    <a><span class = "negrito"> ${obj.data.from} </span>${obj.data.text}</a>
-</div>`;
-}

@@ -18,11 +18,11 @@
             <ion-icon name="people"></ion-icon>
         </div>
         <div class = "bate-papo">
-            
+
         </div>
         <div class = "footer">
-            <input type="text" class="chat" placeholder="Escreva aqui..." />
-            <ion-icon onclick= "sendMessage(this)" name="paper-plane-outline"></ion-icon>
+            <input type="text" class="chat" data-test = "input-message" placeholder="Escreva aqui..." />
+            <ion-icon onclick= "sendMessage(this)" data-test = "send-message"  name="paper-plane-outline"></ion-icon>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
